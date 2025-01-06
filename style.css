@@ -1,0 +1,45 @@
+body {
+    background-color: #ffffff;
+    padding-left: 15% ;
+    padding-right: 15%;
+    margin: 30px;
+    line-height: 1.6;
+   
+}
+
+#Heading {
+  text-align: center;
+}
+
+
+#Subsidies{
+  font-weight: bolder;
+}
+#wrapper {
+  padding-top: 5%;  
+}
+
+
+.diesel-line {
+  fill: none;
+  stroke: rgb(4, 4, 68);
+  stroke-width: 2;
+  
+}
+
+.petrol-line {
+  fill: none;
+  stroke: red;
+  stroke-width: 2;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
