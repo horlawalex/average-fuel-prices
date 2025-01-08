@@ -43,3 +43,11 @@ body {
   opacity: 0;
   transition: opacity 0.2s;
 }
+
+@media screen and (max-width: 600px) {
+  body{
+    width: 100%;
+    text-align: center;
+  }
+
+}
