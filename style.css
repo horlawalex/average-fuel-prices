@@ -1,19 +1,22 @@
 body {
     background-color: #ffffff;
-    padding-left: 15% ;
-    padding-right: 15%;
-    margin: 30px;
+    padding: 0 15%;
+    margin: 0;
     line-height: 1.6;
+    
    
 }
 
 #Heading {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 
 #Subsidies{
   font-weight: bolder;
+  color: #333;
 }
 #wrapper {
   padding-top: 5%;  
@@ -46,8 +49,22 @@ body {
 
 @media screen and (max-width: 600px) {
   body{
-    width: 70px;
+    padding: 0 5%;
     text-align: center;
+    font-size: 0.9rem;
   }
 
+  #Heading {
+    font-size: 1.5rem;
+  }
+
+  ul, p, h3 {
+    text-align: justify;
+  }
+
+  #wrapper {
+    padding-top: 10px;  
+  }
+
+  
 }
