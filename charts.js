@@ -1,30 +1,37 @@
 async function drawlineChat() {
     const data = await d3.csv("fuelprice.csv");
-    
+
     const yAccessor = d => +d.Diesel;
     const petrolAccessor = d => +d.Petrol;
     const dataParse = d3.timeParse("%m/%d/%Y");
     const xAccessor = d => dataParse(d.date);
-    console.log(data);
 
+    // Function to set dimensions dynamically
+    function setDimensions() {
+        const container = d3.select("#wrapper").node();
+        const width = container.getBoundingClientRect().width || 800; // Default to 800 if not found
 
+        return {
+            width: width,
+            height: 500,
+            margin: {
+                top: 50,
+                right: 50,
+                bottom: 50,
+                left: 50
+            },
+            boundedwidth: width - 100, // Adjust for margins
+            boundedheight: 500 - 100 // Adjust for margins
+        };
+    }
 
-    let dimensions = {
-        width: 800,
-        height: 500,
-        margin: {
-            top: 50,
-            right: 50,
-            bottom: 50,
-            left: 50
-        }
-    };
+    let dimensions = setDimensions();
 
-    dimensions.boundedwidth = dimensions.width - dimensions.margin.left - dimensions.margin.right;
-    dimensions.boundedheight = dimensions.height - dimensions.margin.top - dimensions.margin.bottom;
+    // Clear previous SVG (if any)
+    d3.select("#wrapper").selectAll("svg").remove();
 
     const wrapper = d3.select("#wrapper")
-      .append("svg")
+        .append("svg")
         .attr("width", dimensions.width)
         .attr("height", dimensions.height);
 
@@ -54,7 +61,7 @@ async function drawlineChat() {
         .attr("width", dimensions.boundedwidth)
         .attr("height", dimensions.boundedheight);
 
-    // Draw Diesel Line (initial hidden state)
+    // Draw Diesel Line
     const dieselPath = bounds.append("path")
         .datum(data)
         .attr("class", "diesel-line")
@@ -74,7 +81,7 @@ async function drawlineChat() {
         .ease(d3.easeLinear)
         .attr("stroke-dashoffset", 0);
 
-    // Draw Petrol Line (initial hidden state)
+    // Draw Petrol Line
     const petrolPath = bounds.append("path")
         .datum(data)
         .attr("class", "petrol-line")
@@ -104,8 +111,8 @@ async function drawlineChat() {
         .enter()
         .append("circle")
         .attr("class", "interaction-circle")
-        .attr("cx", d=> xScale(xAccessor(d)))
-        .attr("cy", d=> yScale(yAccessor(d)))
+        .attr("cx", d => xScale(xAccessor(d)))
+        .attr("cy", d => yScale(yAccessor(d)))
         .attr("r", 5)
         .attr("fill", "transparent")
         .on("mouseover", function (event, d) {
@@ -122,22 +129,22 @@ async function drawlineChat() {
         .on("mouseout", function () {
             d3.select(this).attr("fill", "transparent");
             tooltip.style("display", "none")
-        })
+        });
 
     bounds.selectAll(".petrol-circle")
         .data(data)
         .enter()
         .append("circle")
         .attr("class", "petrol-circle")
-        .attr("cx", d=> xScale(xAccessor(d)))
-        .attr("cy", d=> yScale(petrolAccessor(d)))
+        .attr("cx", d => xScale(xAccessor(d)))
+        .attr("cy", d => yScale(petrolAccessor(d)))
         .attr("r", 5)
         .attr("fill", "transparent")
         .on("mouseover", function (event, d) {
             d3.select(this).attr("fill", "red")
             tooltip
                 .style("display", "block")
-                .html(`<strong>Date:</strong>  ${dateFormatter(xAccessor(d))}<br><strong>Petrol</strong> #${petrolAccessor(d)}`)
+                .html(`<strong>Date:</strong>  ${dateFormatter(xAccessor(d))}<br><strong>Petrol:</strong> #${petrolAccessor(d)}`)
         })
         .on("mousemove", function(event) {
             tooltip
@@ -147,9 +154,7 @@ async function drawlineChat() {
         .on("mouseout", function () {
             d3.select(this).attr("fill", "transparent");
             tooltip.style("display", "none")
-        })
-
-    
+        });
 
     // Axes
     const yAxisGenerator = d3.axisLeft(yScale).ticks(10);
@@ -189,4 +194,8 @@ async function drawlineChat() {
     legend.append("text").attr("x", -35).attr("y", 30).attr("font-size", "10px").text("Petrol");
 }
 
+// Initial draw
 drawlineChat();
+
+// Redraw on window resize
+window.addEventListener("resize", drawlineChat);
