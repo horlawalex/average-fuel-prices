@@ -9,7 +9,11 @@ async function drawlineChat() {
     // Function to set dimensions dynamically
     function setDimensions() {
         const container = d3.select("#wrapper").node();
-        const width = container.getBoundingClientRect().width || 800; // Default to 800 if not found
+        const containerWidth = container.getBoundingClientRect().width;
+
+        // Fixed width for larger screens (e.g., 800px)
+        const fixedWidth = 800; // Set this to your desired fixed width
+        const width = containerWidth >= fixedWidth ? fixedWidth : containerWidth;
 
         return {
             width: width,
@@ -61,7 +65,7 @@ async function drawlineChat() {
         .attr("width", dimensions.boundedwidth)
         .attr("height", dimensions.boundedheight);
 
-    // Draw Diesel Line
+    // Draw Diesel Line 
     const dieselPath = bounds.append("path")
         .datum(data)
         .attr("class", "diesel-line")
