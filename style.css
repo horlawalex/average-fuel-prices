@@ -76,6 +76,11 @@ body {
     width: 100%;
     height: auto;
   }
+
+  #Credit {
+    text-align: center;
+    font-style: italic;
+  }
   /*
   svg {
     width: 100%;
