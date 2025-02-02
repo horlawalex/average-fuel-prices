@@ -47,11 +47,16 @@ body {
   transition: opacity 0.2s;
 }
 
+#Credit {
+  text-align: center;
+  font-style: italic;
+}
+
 @media screen and (max-width: 600px) {
   body{
     
     padding: 0 5%;
-    text-align: center;
+    /*text-align: center; */
     font-size: 0.9rem;
   }
 
@@ -66,6 +71,10 @@ body {
 
   #wrapper {
     padding-top: 10px;  
+  }
+  svg {
+    width: 100%;
+    height: auto;
   }
   /*
   svg {
