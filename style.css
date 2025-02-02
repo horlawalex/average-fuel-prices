@@ -25,14 +25,14 @@ body {
 
 .diesel-line {
   fill: none;
-  stroke: rgb(4, 4, 68);
+  stroke: #1f77b4;
   stroke-width: 2;
   
 }
 
 .petrol-line {
   fill: none;
-  stroke: red;
+  stroke: #ff7f0e;
   stroke-width: 2;
 }
 

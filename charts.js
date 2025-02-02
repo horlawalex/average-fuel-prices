@@ -191,10 +191,10 @@ async function drawlineChat() {
     const legend = wrapper.append("g")
         .attr("transform", `translate(${dimensions.width - 150}, ${dimensions.margin.top})`);
 
-    legend.append("rect").attr("x", -50).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", "blue");
+    legend.append("rect").attr("x", -50).attr("y", 0).attr("width", 10).attr("height", 10).attr("fill", "#1f77b4");
     legend.append("text").attr("x", -35).attr("y", 10).attr("font-size", "10px").text("Diesel");
 
-    legend.append("rect").attr("x", -50).attr("y", 20).attr("width", 10).attr("height", 10).attr("fill", "red");
+    legend.append("rect").attr("x", -50).attr("y", 20).attr("width", 10).attr("height", 10).attr("fill", "#ff7f0e");
     legend.append("text").attr("x", -35).attr("y", 30).attr("font-size", "10px").text("Petrol");
 }
 
