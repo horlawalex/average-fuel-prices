@@ -120,7 +120,7 @@ async function drawlineChat() {
         .attr("r", 5)
         .attr("fill", "transparent")
         .on("mouseover", function (event, d) {
-            d3.select(this).attr("fill", "blue")
+            d3.select(this).attr("fill", "#1f77b4")
             tooltip
                 .style("display", "block")
                 .html(`<strong>Date:</strong> ${dateFormatter(xAccessor(d))}<br><strong>Diesel:</strong> #${yAccessor(d)}`)
@@ -145,7 +145,7 @@ async function drawlineChat() {
         .attr("r", 5)
         .attr("fill", "transparent")
         .on("mouseover", function (event, d) {
-            d3.select(this).attr("fill", "red")
+            d3.select(this).attr("fill", "#ff7f0e")
             tooltip
                 .style("display", "block")
                 .html(`<strong>Date:</strong>  ${dateFormatter(xAccessor(d))}<br><strong>Petrol:</strong> #${petrolAccessor(d)}`)
